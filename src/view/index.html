@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-<!-- <head>    // 已提取公共模块
-    <mate charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="../../dist/css/index.css">   html-webpack-plugins inject=true自动引入
-</head> -->
-   <%= require('html-loader!./layout/head.html') %>  <!-- html-webpack-plugin 支持ejs 模板 -->
+
+
+
+
+ <%= require('html-loader!./layout/head.html') %> 
 
 <body>
+
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<!--     <script type="text/javascript" src="../../dist/js/base.js"></script>   
-    <script type="text/javascript" src="../../dist/js/index.js"></script>     html-webpack-plugins inject=true自动引入 -->
+<!-- <script type="text/javascript" src="../../dist/js/base.js"></script>   
+     <script type="text/javascript" src="../../dist/js/index.js"></script>     
+
+     html-webpack-plugins inject=true自动引入 -->
 </body>
 </html>

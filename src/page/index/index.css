@@ -2,8 +2,10 @@
 * @Author: pengcheng9101
 * @Date:   2018-02-10 00:17:03
 * @Last Modified by:   pengcheng9101
-* @Last Modified time: 2018-02-10 00:17:34
+* @Last Modified time: 2018-02-10 18:15:12
 */
 body{
-    background: #ccc;
+/*    background: url('../../img/test.jpg');
+*/
+    background: url('../../img/test.jpg');
 }

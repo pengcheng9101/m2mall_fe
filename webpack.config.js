@@ -2,7 +2,7 @@
 * @Author: pengcheng9101
 * @Date:   2018-02-09 21:15:55
 * @Last Modified by:   pengcheng9101
-* @Last Modified time: 2018-02-10 10:28:32
+* @Last Modified time: 2018-02-10 18:04:46
 */
 // module.exports = {
 //     entry: './src/page/index/index.js',
@@ -13,28 +13,29 @@
 // };
 
 var webpack             = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin   = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 获取 html webpack plusgin 参数的方法,
 var getHtmlConfig = function(name){
     return {
             template : './src/view/'+name+'.html',
             filename : 'view/'+name+'.html',
-            inject   : true,
-            hash     : true,
+            inject      : true,
+            hash        : true,
             chunks   : ['common',name]    // entry 的 common  , index
     };
 };
 var config = {
    // entry: './src/page/index/index.js',
    entry: {
-        'common' : ['./src/page/common/index.js'],
+        'common' : ['./src/page/common/index.js','webpack-dev-server/client?http://localhost:8088/'],
         'index' : ['./src/page/index/index.js'],
         'login' : ['./src/page/login/index.js'],
 
    },
     output : {
             path: './dist',
+            publicPath: '/dist/',
             filename: 'js/[name].js'
     },
     externals : {
@@ -42,11 +43,11 @@ var config = {
     },
     module: {  
         loaders: [  
-            {  
-                test: /\.css$/,  
-               // loader: "style-loader!css-loader"  
-                loader: ExtractTextPlugin.extract("style-loader","css-loader"),    // css 单独担保需要的插件 
-            }  
+        //  // loader: "style-loader!css-loader"  
+            // {  test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader"),    // css 单独担保需要的插件 
+            // },
+            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader")},
+            {test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader:'url-loader?limit=100&name=resource/[name].[ext]'}
         ]  
     },
     plugins: [
