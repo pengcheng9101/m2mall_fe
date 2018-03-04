@@ -4,7 +4,8 @@
   "description": "m2mall 前端",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "WEBPACK_ENV=dev webpack-dev-server --inline --port 8088",
+    "dist": "WEBPACK_ENV=online webpack -p"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,14 @@
   },
   "homepage": "https://github.com/pengcheng9101/m2mall_fe#readme",
   "devDependencies": {
+    "bootstrap": "^4.0.0",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.11.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^2.28.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
     "style-loader": "^0.20.1",
     "url-loader": "^0.5.8",
     "webpack": "^1.15.0",

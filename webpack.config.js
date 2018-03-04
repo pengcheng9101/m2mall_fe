@@ -1,8 +1,8 @@
 /*
 * @Author: pengcheng9101
 * @Date:   2018-02-09 21:15:55
-* @Last Modified by:   pengcheng9101
-* @Last Modified time: 2018-02-10 18:04:46
+* @Last Modified by:   riccin
+* @Last Modified time: 2018-03-04 22:03:26
 */
 // module.exports = {
 //     entry: './src/page/index/index.js',
@@ -14,8 +14,12 @@
 
 var webpack             = require('webpack');
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin   = require('html-webpack-plugin');
 // 获取 html webpack plusgin 参数的方法,
+
+var WEBPACK_ENV         = process.env.WEBPACK_ENV||'dev';
+console.log(WEBPACK_ENV);
+
 var getHtmlConfig = function(name){
     return {
             template : './src/view/'+name+'.html',
@@ -41,7 +45,7 @@ var config = {
     externals : {
             'jquery' : 'window.jQuery'
     },
-    module: {  
+    module  : {  
         loaders: [  
         //  // loader: "style-loader!css-loader"  
             // {  test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader"),    // css 单独担保需要的插件 
@@ -49,6 +53,17 @@ var config = {
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader")},
             {test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader:'url-loader?limit=100&name=resource/[name].[ext]'}
         ]  
+    },
+    // 定义项目路径变量 ,在js 代码直接用...
+    resolve : {
+        alias : {
+         util    : __dirname+'/src/util',       //   __dirname 当前项目地址
+         page    : __dirname+'/src/page',       //   __dirname 当前项目地址
+         service : __dirname+'/src/service',       //   __dirname 当前项目地址
+         img     : __dirname+'/src/img'      //   __dirname 当前项目地址
+
+        }
+
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({     //提取公共模块的js插件
@@ -68,9 +83,18 @@ var config = {
 
       //       //所有静态资源css和JavaScript都会注入到模板文件中
       // }),
+      new webpack.ProvidePlugin({
+          "$": "jquery",
+          "jQuery": "jquery",
+          "window.jQuery": "jquery"
+      }),
        new HtmlWebpackPlugin(getHtmlConfig('index')),
        new HtmlWebpackPlugin(getHtmlConfig('login')),
     ]
 };
+if ('dev' === WEBPACK_ENV) {
+    config.entry.common.push('webpack-dev-server/client?http://localhost:8088/')
+
+}
 
 module.exports = config;

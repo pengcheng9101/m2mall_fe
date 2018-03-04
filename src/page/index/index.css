@@ -1,11 +1,13 @@
 /*
 * @Author: pengcheng9101
 * @Date:   2018-02-10 00:17:03
-* @Last Modified by:   pengcheng9101
-* @Last Modified time: 2018-02-10 18:15:12
+* @Last Modified by:   riccin
+* @Last Modified time: 2018-03-04 11:25:27
 */
 body{
 /*    background: url('../../img/test.jpg');
 */
     background: url('../../img/test.jpg');
+    color: red;
+    font-size: 50px
 }
